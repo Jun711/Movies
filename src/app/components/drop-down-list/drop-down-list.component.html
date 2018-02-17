@@ -1,0 +1,11 @@
+<article>
+  <h1>Movies</h1>
+  <p>
+    drop-down-list works!
+  </p>
+  <div>Select</div>
+  <ul>
+    <li *ngFor="let movie of movies; let i = index">{{i + 1}}: {{movie.title}}</li>
+  </ul>
+  <div (click)="clearSelected($event)">X</div>
+</article>
