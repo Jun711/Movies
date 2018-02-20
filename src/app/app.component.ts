@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  public title: string = 'Popcorn';
+  public instruction: string = 'Click Popcorn to lazy load drop-down-list';
+  public showInstruction: boolean = true;
+
+  hideInstruction() {
+    this.showInstruction = false;
+  }
 }
