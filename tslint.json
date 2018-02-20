@@ -111,6 +111,7 @@
     "variable-name": false,
     "whitespace": [
       true,
+      "check-module",
       "check-branch",
       "check-decl",
       "check-operator",
