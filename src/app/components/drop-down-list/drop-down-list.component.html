@@ -1,11 +1,16 @@
-<article>
-  <h1>Movies</h1>
-  <p>
-    drop-down-list works!
-  </p>
-  <div>Select</div>
-  <ul>
-    <li *ngFor="let movie of movies; let i = index">{{i + 1}}: {{movie.title}}</li>
+<div role='Listbox' (keyup)='handleKeyUpEvent($event)' (keydown)='handleKeyDownEvent($event)'>
+  <span tabIndex='1' (blur)='listBlur()' (click)='listActivated()'
+        (click)='toggleDropDownList()'
+        [ngClass]='titleClasses'>{{title || 'DropDownList'}}</span>
+  <ul role='List' [ngClass]='listClasses'>
+    <li
+      role='Listitem'
+      (click)='selectItem(item)'
+      *ngFor='let item of listItems; let i = index'
+      [class.selected]='i === activeIndex'
+      [selected]='i === activeIndex'>{{i + 1}}: {{item.data}}
+    </li>
   </ul>
-  <div (click)="clearSelected($event)">X</div>
-</article>
+  <span [ngClass]='clearClasses' (click)='deselectItem()'>Clear</span>
+</div>
+

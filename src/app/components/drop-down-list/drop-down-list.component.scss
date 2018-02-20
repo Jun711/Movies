@@ -1,9 +1,123 @@
-article {
-  margin: 0 auto;
-  text-align: center;
+@import '../../../_colors.scss';
+
+$timing: .5s;
+$z-index: 1;
+$list-height: 150px;
+
+%list-shared {
+  z-index: $z-index + 1;
+  position: absolute;
 }
 
-ul {
-  //text-align: left;
-  list-style-type: none;
+div {
+  display: block;
+  margin: 0;
+  width: 100%;
+  max-width: 350px;
+  color: $black;
+  cursor: pointer;
+  position: relative;
+
+  .title {
+    &.no-outline {
+      outline: none;
+    }
+
+    &:active {
+      outline: none;
+    }
+
+    display: block;
+    padding: 5px;
+    position: relative;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 30px;
+    border: 1px solid lighten($black, 80%);
+    background: lighten($black, 90%);
+    border-radius: 5px;
+    transition: border-radius 0s ease $timing;
+    &.open {
+      box-shadow: 0 0 10px rgba($black, .5);
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      transition: border-radius 0s ease, box-shadow 0.2s ease;
+      &:after {
+        transform: rotate(180deg);
+      }
+      &:hover {
+        box-shadow: 0 5px 20px 7px rgba($black, .5);
+        transition: box-shadow 0.2s ease;
+      }
+    }
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid lighten($black, 65%);
+      position: absolute;
+      top: 12px;
+      right: 10px;
+      transition: transform $timing ease;
+    }
+  }
+
+  .list {
+    @extend %list-shared;
+    top: 30px;
+    list-style-type: none;
+    margin-top: 0;
+    width: 100%;
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+    background: lighten($black, 90%);
+    transition: max-height 0.3s ease, visibility $timing ease, opacity $timing ease;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    cursor: pointer;
+    &.open {
+      max-height: $list-height;
+      overflow: auto;
+      visibility: visible;
+      opacity: 1;
+      border-right: 1px solid lighten($black, 80%);
+      border-bottom: 1px solid lighten($black, 80%);
+      border-left: 1px solid lighten($black, 80%);
+    }
+    li {
+      visibility: visible;
+      text-transform: capitalize;
+      padding: 7px 5px;
+      border-top: 1px solid lighten($black, 80%);
+      &:hover, &.selected {
+        background: lighten($black, 85%);
+      }
+    }
+  }
+
+  .clear {
+    @extend %list-shared;
+    color: $gray;
+    font-size: .75rem;
+    text-align: right;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    padding: 5px;
+    transition: visibility 0s ease $timing, top $timing ease,;
+    &.open.show {
+      top: 185px;
+    }
+    &.show {
+      visibility: visible;
+      opacity: 1;
+      top: 35px;
+    }
+  }
 }
