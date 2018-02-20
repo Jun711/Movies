@@ -66,6 +66,8 @@ export class DropDownListComponent implements OnInit {
     } else if (key === Key.escape) {
       if (this.listOpenState) {
         this.toggleDropDownList({ state: false });
+      } else if (!this.listOpenState) {
+        this.deselectItem();
       }
     }
   }

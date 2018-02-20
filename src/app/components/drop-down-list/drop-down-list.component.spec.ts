@@ -516,6 +516,27 @@ fdescribe('DropDownListComponent component keyboard events', () => {
     expect(dropDownList.selectedItem).toEqual(null);
   });
 
+  it('fn handleKeyEvents Esc should deselect the list if it is close', () => {
+    expect(dropDownList.listOpenState).toBe(false);
+    expect(dropDownList.selectedItem).toBe(null);
+    dropDownList.selectedItem = firstListItem;
+    fixture.detectChanges();
+
+    expect(dropDownList.selectedItem).toEqual(firstListItem);
+    expect(dropDownList.listOpenState).toBe(false);
+    dropDownList.handleKeyEvents(escapeEvent.key);
+    fixture.detectChanges();
+
+    const titleSpan = fixture.nativeElement.querySelector('span');
+    const clear = dropDownListElement.querySelectorAll('span')[1];
+
+    expect(titleSpan.textContent).toBe(popularMovieTitle);
+    expect(dropDownList.title).toEqual(popularMovieTitle);
+    expect(dropDownList.selectedItem).toEqual(null);
+    expect(clear.classList).not.toContain('show');
+    expect(dropDownList.listOpenState).toBe(false);
+  });
+
   it('fn handleKeyUpEvent should reset keyHoldCount', () => {
     expect(dropDownList.keyHoldCount).toBe(0);
     dropDownList.keyHoldCount = 6;
