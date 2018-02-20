@@ -5,10 +5,9 @@
     </div>
   </div>
   <div id='dropDownList'>
-    <drop-down-list (selectEvent)='selectedItem=$event'
-                    (clearEvent)='selectedItem=null'
-                    [items]='listItems'
-    ></drop-down-list>
+    <div>
+      <drop-down-list [items]='listItems'></drop-down-list>
+    </div>
   </div>
   <div class='title'>
     <div>

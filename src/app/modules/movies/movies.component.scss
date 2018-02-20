@@ -1,10 +1,14 @@
 @import '../../../_colors.scss';
 
-%flexbox-shared {
+%flexbox {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
 
+%dropdownlist {
+  display: block;
+  width: 350px;
 }
 
 section {
@@ -27,20 +31,23 @@ section {
   }
 
   #dropDownList {
-    @extend %flexbox-shared;
+    @extend %flexbox;
     height: 10vh;
+
+    div {
+      @extend %dropdownlist;
+    }
   }
 
   #poster-box {
-    @extend %flexbox-shared;
+    @extend %flexbox;
     height: 20vh;
     flex-wrap: wrap;
     align-items: center;
     padding-top: 50px;
 
     div {
-      display: block;
-      width: 350px;
+      @extend %dropdownlist;
       padding-bottom: 1rem;
     }
 
