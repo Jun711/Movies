@@ -1,0 +1,59 @@
+@import '../../../_colors.scss';
+
+%flexbox-shared {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+section {
+  margin-top: 3rem;
+  padding: 10px;
+
+  .title {
+    width: 100vw;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 3rem;
+
+    #movie:hover:before {
+      content: '-'
+    }
+
+    #movie:hover:after {
+      content: '-'
+    }
+  }
+
+  #dropDownList {
+    @extend %flexbox-shared;
+    height: 10vh;
+  }
+
+  #poster-box {
+    @extend %flexbox-shared;
+    height: 20vh;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 50px;
+
+    div {
+      display: block;
+      width: 350px;
+      padding-bottom: 1rem;
+    }
+
+    #poster {
+      display: block;
+      padding: 10px 30px;
+      width: 300px;
+      height: 300px;
+      img {
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<section>
+  <div class='title'>
+    <div>
+      <h1>{{dropDownListTitle}}</h1>
+    </div>
+  </div>
+  <div id='dropDownList'>
+    <drop-down-list (selectEvent)='selectedItem=$event'
+                    (clearEvent)='selectedItem=null'
+                    [items]='listItems'
+    ></drop-down-list>
+  </div>
+  <div class='title'>
+    <div>
+      <h1>{{popularMovieTitle}}</h1>
+    </div>
+    <div>
+      <span *ngIf='!selectedItem'>No </span>Movie <span id='movie'>{{selectedItem?.data}}</span> selected.
+    </div>
+  </div>
+  <div id='poster-box'>
+    <div>
+      <drop-down-list (selectEvent)='selectedItem=$event; updateImage($event)'
+                      (clearEvent)='selectedItem=null'
+                      [items]='popularMovies'
+                      [title]="'Popular Movies'"
+      ></drop-down-list>
+    </div>
+    <div id='poster'>
+      <img src='http://image.tmdb.org/t/p/w185/{{ selectedItem ? moviePosterPath : defaultPosterPath }}'>
+    </div>
+  </div>
+</section>
