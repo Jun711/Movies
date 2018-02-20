@@ -6,20 +6,27 @@
   justify-content: center;
 }
 
+%media {
+  @media (max-width: 600px) {
+    width: 90vw;
+  }
+}
+
 %dropdownlist {
   display: block;
   width: 350px;
+  @extend %media;
 }
 
 section {
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding: 10px;
 
   .title {
-    width: 100vw;
+    @extend %media;
     margin: 0 auto;
     text-align: center;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
 
     #movie:hover:before {
       content: '-'
@@ -41,10 +48,10 @@ section {
 
   #poster-box {
     @extend %flexbox;
-    height: 20vh;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     align-items: center;
-    padding-top: 50px;
+    align-content: flex-end;
+    height: 500px;
 
     div {
       @extend %dropdownlist;
@@ -53,9 +60,8 @@ section {
 
     #poster {
       display: block;
-      padding: 10px 30px;
-      width: 300px;
-      height: 300px;
+      padding: 20px 20px;
+
       img {
         width: 300px;
         height: 300px;
