@@ -5,7 +5,7 @@
   <ul role='List' [ngClass]='listClasses'>
     <li
       role='Listitem'
-      (click)='selectItem(item)'
+      (mousedown)='selectItem(item)'
       *ngFor='let item of listItems; let i = index'
       [class.selected]='i === activeIndex'
       [selected]='i === activeIndex'>{{i + 1}}: {{item.data}}
